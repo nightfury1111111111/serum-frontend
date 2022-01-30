@@ -25,10 +25,10 @@ const App = () => {
     getTokenAccount();
   }
 
-  const [name, setName] = useState<string>('');
+  const [name, setName] = useState<string>('SRM/SOL');
   const [side, setSide] = useState<string>('buy');
-  const [price, setPrice] = useState<number>();
-  const [size, setSize] = useState<number>();
+  const [price, setPrice] = useState<number>(0.01);
+  const [size, setSize] = useState<number>(0.1);
   const [pendingName, setPendingName] = useState<string>('');
 
   const handleAddTokenAccount = () => {

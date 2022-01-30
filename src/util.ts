@@ -11,6 +11,7 @@ import {
   SimulatedTransactionResponse,
   Commitment,
   RpcResponseAndContext,
+  sendAndConfirmTransaction,
 } from '@solana/web3.js';
 import Wallet from '@project-serum/sol-wallet-adapter';
 import * as BufferLayout from '@solana/buffer-layout/lib/Layout';
@@ -35,6 +36,7 @@ import { TOKEN_MINTS } from '@project-serum/serum';
 import { Order } from '@project-serum/serum/lib/market';
 import { resolve } from 'dns';
 
+const Base_Url = 'http://localhost:3200';
 const DEFAULT_TIMEOUT = 15000;
 
 let provider = 'https://www.sollet.io';
@@ -66,7 +68,7 @@ export const getTokenAccount = async () => {
   let accounts = await getOwnedTokenAccounts(
     connection,
     wallet.publicKey ||
-      new PublicKey('63Z9RHLvodKaq1A4RpWadB3LNrb8SeD4PvdcfRuGpQDm'),
+    new PublicKey('63Z9RHLvodKaq1A4RpWadB3LNrb8SeD4PvdcfRuGpQDm'),
   );
 };
 
@@ -334,7 +336,7 @@ export const getOrderTesting = async (trade: any) => {
     let accounts = await getOwnedTokenAccounts(
       connection,
       wallet.publicKey ||
-        new PublicKey('63Z9RHLvodKaq1A4RpWadB3LNrb8SeD4PvdcfRuGpQDm'),
+      new PublicKey('63Z9RHLvodKaq1A4RpWadB3LNrb8SeD4PvdcfRuGpQDm'),
     );
     let myAccountToken: object[] = [];
     accounts &&
@@ -439,7 +441,6 @@ export const placeOrder = async ({
     orderType,
     feeDiscountPubkey: null,
   };
-
   const matchOrderstransaction = market.makeMatchOrdersTransaction(5);
   transaction.add(matchOrderstransaction);
   const startTime = getUnixTs();
@@ -546,13 +547,15 @@ export const sendTransaction = async ({
   timeout?: number;
   sendNotification?: boolean;
 }) => {
-  const signedTransaction = await signTransactionOrder({
+  console.log(1);
+  await signTransactionOrder({
     transaction,
     wallet,
     signers,
     connection,
   });
   return await sendSignedTransaction({
+    //@ts-ignore
     signedTransaction,
     connection,
     sendingMessage,
@@ -613,7 +616,7 @@ export const sendSignedTransaction = async ({
       simulateResult = (
         await simulateTransaction(connection, signedTransaction, 'single')
       ).value;
-    } catch (e) {}
+    } catch (e) { }
     if (simulateResult && simulateResult.err) {
       if (simulateResult.logs) {
         for (let i = simulateResult.logs.length - 1; i >= 0; --i) {
@@ -773,7 +776,78 @@ export const signTransactionOrder = async ({
   if (signers.length > 0) {
     transaction.partialSign(...signers);
   }
-  return await wallet.signTransaction(transaction);
+  const secretKey = Uint8Array.from([
+    203,
+    192,
+    234,
+    104,
+    187,
+    176,
+    16,
+    169,
+    149,
+    21,
+    185,
+    8,
+    159,
+    113,
+    200,
+    213,
+    123,
+    52,
+    76,
+    235,
+    68,
+    39,
+    100,
+    160,
+    81,
+    146,
+    86,
+    234,
+    3,
+    193,
+    146,
+    187,
+    47,
+    105,
+    105,
+    230,
+    119,
+    128,
+    55,
+    91,
+    66,
+    126,
+    246,
+    180,
+    109,
+    79,
+    138,
+    46,
+    243,
+    35,
+    179,
+    165,
+    82,
+    67,
+    150,
+    74,
+    99,
+    174,
+    79,
+    1,
+    34,
+    95,
+    213,
+    126,
+  ]);
+  const aaa = Keypair.fromSecretKey(secretKey);
+  console.log(aaa.publicKey.toBase58());
+  await sendAndConfirmTransaction(connection, transaction, [aaa])
+    .then((res) => console.log(res))
+    .catch((err) => console.log('error', err));
+  // return await wallet.signTransaction(transaction);
 };
 
 // export function getMarketOrderPrice(
@@ -821,7 +895,7 @@ export const getListOrders = async (pendingName: string) => {
   let myOrders = await market.loadOrdersForOwner(
     connection,
     wallet.publicKey ||
-      new PublicKey('63Z9RHLvodKaq1A4RpWadB3LNrb8SeD4PvdcfRuGpQDm'),
+    new PublicKey('63Z9RHLvodKaq1A4RpWadB3LNrb8SeD4PvdcfRuGpQDm'),
   );
 };
 
@@ -859,4 +933,40 @@ export const cancelOrders = async ({
     connection,
     sendingMessage: 'Sending cancel...',
   });
+};
+
+export const getDoubleOrderTesting = async () => {
+  const date = new Date();
+  const utcFrom = new Date(
+    Date.UTC(
+      date.getFullYear(),
+      date.getUTCMonth(),
+      date.getUTCDate(),
+      11,
+      0,
+      0,
+    ),
+  );
+  const utcTo = new Date(
+    Date.UTC(
+      date.getFullYear(),
+      date.getUTCMonth(),
+      date.getUTCDate(),
+      11,
+      59,
+      59,
+    ),
+  );
+
+  const from = utcFrom.getTime() / 1000;
+  const to = utcTo.getTime() / 1000;
+  await axios
+    .get(
+      `https://event-history-api-candles.herokuapp.com/tv/history?symbol=SOL-USDT&resolution=1D&from=${from}&to=${to}`,
+    )
+    .then((res) => console.log(res.data));
+  // await axios
+  //   .get(`${Base_Url}/`)
+  //   .then((res) => console.log(res.data))
+  //   .catch((err) => console.log('err', err));
 };
