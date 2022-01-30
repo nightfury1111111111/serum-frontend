@@ -1,0 +1,88 @@
+[debug] [2022-01-26T00:13:33.696Z] ----------------------------------------------------------------------
+[debug] [2022-01-26T00:13:33.701Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\star\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2022-01-26T00:13:33.702Z] CLI Version:   9.23.1
+[debug] [2022-01-26T00:13:33.702Z] Platform:      win32
+[debug] [2022-01-26T00:13:33.702Z] Node Version:  v14.17.5
+[debug] [2022-01-26T00:13:33.704Z] Time:          Wed Jan 26 2022 08:13:33 GMT+0800 (China Standard Time)
+[debug] [2022-01-26T00:13:33.704Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-01-26T00:13:33.853Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-01-26T00:13:33.853Z] > authorizing via signed-in user (venus07250000@gmail.com)
+[debug] [2022-01-26T00:13:33.854Z] [iam] checking project sollet-wallet-testing for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2022-01-26T00:13:33.859Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2022-01-26T00:13:33.859Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-01-26T00:13:35.073Z] <<< HTTP RESPONSE 200 {"date":"Wed, 26 Jan 2022 00:13:53 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-01-26T00:13:35.162Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/sollet-wallet-testing:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-01-26T00:13:36.986Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 26 Jan 2022 00:13:55 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=717","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-01-26T00:13:36.988Z] > refreshing access token with scopes: []
+[debug] [2022-01-26T00:13:36.988Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-01-26T00:13:38.616Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Wed, 26 Jan 2022 00:13:57 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-01-26T00:13:39.283Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/sollet-wallet-testing [none]
+[debug] [2022-01-26T00:13:40.305Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/sollet-wallet-testing 200
+[debug] [2022-01-26T00:13:40.306Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/sollet-wallet-testing {"projectId":"sollet-wallet-testing","projectNumber":"754050436816","displayName":"Sollet-wallet-testing","name":"projects/sollet-wallet-testing","resources":{"hostingSite":"sollet-wallet-testing"},"state":"ACTIVE"}
+[info] 
+[info] === Deploying to 'sollet-wallet-testing'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2022-01-26T00:13:40.316Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2022-01-26T00:13:40.317Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-01-26T00:13:41.115Z] <<< HTTP RESPONSE 200 {"date":"Wed, 26 Jan 2022 00:13:59 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-01-26T00:13:42.456Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/sollet-wallet-testing/versions  
+ {"config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2022-01-26T00:13:44.365Z] <<< HTTP RESPONSE 500 {"vary":"X-Origin, Referer, Origin,Accept-Encoding","content-type":"application/json; charset=UTF-8","date":"Wed, 26 Jan 2022 00:14:03 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-01-26T00:13:44.365Z] <<< HTTP RESPONSE BODY {"error":{"code":500,"message":"Internal error encountered.","status":"INTERNAL"}}
+[error] 
+[error] Error: HTTP Error: 500, Internal error encountered.
+[debug] [2022-01-26T00:13:46.520Z] Error Context: {
+  "body": {
+    "error": {
+      "code": 500,
+      "message": "Internal error encountered.",
+      "status": "INTERNAL"
+    }
+  },
+  "response": {
+    "statusCode": 500,
+    "body": {
+      "error": {
+        "code": 500,
+        "message": "Internal error encountered.",
+        "status": "INTERNAL"
+      }
+    },
+    "headers": {
+      "vary": "X-Origin, Referer, Origin,Accept-Encoding",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Wed, 26 Jan 2022 00:14:03 GMT",
+      "server": "ESF",
+      "cache-control": "private",
+      "x-xss-protection": "0",
+      "x-frame-options": "SAMEORIGIN",
+      "x-content-type-options": "nosniff",
+      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"",
+      "accept-ranges": "none",
+      "transfer-encoding": "chunked"
+    },
+    "request": {
+      "uri": {
+        "protocol": "https:",
+        "slashes": true,
+        "auth": null,
+        "host": "firebasehosting.googleapis.com",
+        "port": 443,
+        "hostname": "firebasehosting.googleapis.com",
+        "hash": null,
+        "search": null,
+        "query": null,
+        "pathname": "/v1beta1/sites/sollet-wallet-testing/versions",
+        "path": "/v1beta1/sites/sollet-wallet-testing/versions",
+        "href": "https://firebasehosting.googleapis.com/v1beta1/sites/sollet-wallet-testing/versions"
+      },
+      "method": "POST"
+    }
+  }
+}
